@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
 
+interface ContactsType {
+  id: string;
+  name: string;
+}
+
 const PREFIX = 'whatsapp-clone-';
 
 export const useLocalStorage = (
   key: string,
   // value or useState
-  initialValue?: string | (() => string)
-): [string, React.Dispatch<React.SetStateAction<string>>] => {
+  initialValue?: [] | (() => string)
+): [ContactsType[], React.Dispatch<React.SetStateAction<ContactsType[]>>] => {
   const prefixedKey = PREFIX + key;
 
   const [value, setValue] = useState(() => {
     const jsonValue = localStorage.getItem(prefixedKey);
     if (jsonValue !== null) {
-      console.log('not null');
+      console.log('jsonValue is not null');
       return JSON.parse(jsonValue);
     }
     if (typeof initialValue === 'function') {
-      console.log('function');
+      console.log('initialValue is a function');
       return initialValue();
     } else {
-      console.log('typeof else');
+      console.log('initialValue is not a function');
       return initialValue;
     }
   });

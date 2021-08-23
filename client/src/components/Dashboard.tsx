@@ -6,7 +6,11 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({
   id,
 }: DashboardProps): JSX.Element => {
-  return <Sidebar id={id} />;
+  return (
+    <div className="d-flex" style={{ height: '100vh' }}>
+      <Sidebar id={id} />
+    </div>
+  );
 };
 
 export default Dashboard;
